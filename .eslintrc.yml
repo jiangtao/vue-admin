@@ -1,0 +1,26 @@
+# Support ES2016 features
+parser: babel-eslint
+
+extends: standard
+plugins:
+  - vue
+  - promise
+  - import
+
+rules:
+  arrow-parens: [2, as-needed]
+  eqeqeq: 0
+  no-return-assign: 0 # fails for arrow functions
+  no-var: 2
+  no-unused-vars: [1, {"vars": "all", "args": "none"}]
+  no-useless-constructor: 0
+  semi: [2, never]
+  space-before-function-paren: [2, never]
+  yoda: 0
+  arrow-spacing: 2
+  dot-location: [2, "property"]
+  prefer-arrow-callback: 2
+  accessor-pairs: 0 # getter and setter pairs check
+  prefer-promise-reject-errors: 0 # allow promise reject not Error instance
+  no-tabs: 1
+  indent: 2

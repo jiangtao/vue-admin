@@ -1,0 +1,27 @@
+<section class="wrap">
+    <header class="header"></header>
+    <main class="main" :class="{'sidebar--close': !vo.sidebarIsOpen }">
+        <section class="sidebar">
+            <Menus class="sidebar__box" mode="vertical">
+                <Submenu>
+                    <span slot="title">菜单1</span>
+                    <i slot="arrow">&gt;</i>
+                    <Item><router-link :to="{path: '/submenu2'}">子菜单2</router-link></Item>
+                    <Item><router-link :to="{path: '/submenu3'}">子菜单3</router-link></Item>
+                    <Item><router-link :to="{path: '/submenu4'}">子菜单4</router-link></Item>
+                    <Item><router-link :to="{path: '/components/radio'}">子菜单 - radio</router-link></Item>
+                    <Item><router-link :to="{path: '/components/transfer'}">子菜单 - 穿梭框</router-link></Item>
+                </Submenu>
+                <Item><router-link :to="{path: '/menu2'}">菜单2</router-link></Item>
+            </Menus>
+            <div class="sidebar__switch" @click="toggle">
+                <div class="sidebar__arrow"></div>
+            </div>
+        </section>
+        <section class="content">
+            <div class="box">
+                <slot></slot>
+            </div>
+        </section>
+    </main>
+</section>

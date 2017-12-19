@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="format-detection" content="telephone=no, address=no">
+    <style>
+        .validate__input--error .ui-input,
+        .validate__input--error .ui-select__input,
+        .validate__input--error .ui-textarea {
+            border: 1px solid #ff8080;
+            box-shadow: 0px 0px 6px #ff8080, 0px 0px 6px #ff8080 inset;
+        }
+
+        .validate__input--error .ui-input:focus,
+        .validate__input--error .ui-select__input:focus,
+        .validate__input--error .ui-textarea:focus {
+            border-color: #ff8080;
+        }
+
+        input.ui-input[readonly] {
+            background-color: #fff3f3;
+        }
+
+        input.ui-input[readonly]:focus {
+            border-color: #c0ccda;
+        }
+
+        body .ui-radio--inner[disabled][checked] {
+            background-color: #2e90fe;
+            border-color: #2e90fe;
+        }
+
+        .validate__label--error {
+            position: absolute;
+            color: #ff5053;
+            font-size: 12px;
+            line-height: 23px;
+        }
+
+        .validate__text--error {
+            position: absolute;
+            color: #ff5053;
+            font-size: 12px;
+        }
+
+        .ui-tabs {
+            height: calc(100% - 5px);
+            box-sizing: content-box;
+            overflow: hidden;
+        }
+
+        .ui-tabs-panel {
+            height: calc(100% - 50px);
+            overflow: scroll;
+        }
+
+        .ui-field__content {
+            padding-bottom: 2px;
+        }
+
+        /*分页栏*/
+        .ui-pagination {
+            margin-top: 4px;
+        }
+
+        .ui-pagination--total {
+            line-height: 26px;
+            margin-top: 2px;
+            margin-right: 8px;
+            display: inline-block;
+            float: left;
+        }
+
+        .ui-pagination .ui-counter {
+            height: 26px;
+        }
+
+        .ui-pagination .ui-goto--current {
+            height: 26px;
+            width: 50px;
+        }
+
+        /*重写PC端样式Loading样式*/
+        body .ui-loading__container {
+            width: auto;
+            min-width: 120px;
+        }
+
+        body .ui-loading__icon {
+            width: 40px;
+            height: 40px;
+            margin-top: 15px;
+        }
+
+        body .ui-loading__text {
+            font-size: 14px;
+            line-height: 24px;
+            padding: 10px 20px 10px;
+        }
+
+        body .ui-loading__text:after {
+            display: inline-block;
+            text-align: left;
+            padding-left: 3px;
+            width: 15px;
+            content: " ...";
+            animation: loading 1.5s linear;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes loading {
+            0% {
+                content: ".";
+            }
+            33% {
+                content: "..";
+            }
+            66% {
+                content: "...";
+            }
+            100% {
+                content: "";
+            }
+        }
+
+        /*重写PC端样式Alert样式*/
+
+        body .ui-alert__container {
+            width: auto;
+            min-width: 420px;
+            max-width: 600px;
+            padding: 10px 20px;
+        }
+
+        body .ui-alert__title {
+            height: 30px;
+            line-height: 30px;
+            font-size: 16px;
+            font-weight: 700;
+            padding: 0;
+            color: #333;
+            text-align: left;
+        }
+
+        body .ui-alert__info {
+            min-height: 90px;
+            font-size: 14px;
+            line-height: 24px;
+            text-align: left;
+            color: #48576a;
+            font-weight: 200;
+            padding: 10px 0 0;
+        }
+
+        body .ui-alert__button {
+            width: 60px;
+            height: 35px;
+            margin: 0;
+            display: inline-block;
+            font-size: 14px;
+            line-height: 35px;
+            cursor: pointer;
+            float: right;
+            background: #20a0ff;
+            border-radius: 5px;
+            color: #FFF;
+        }
+
+        body .ui-alert__button:hover {
+            opacity: 0.8;
+        }
+
+        /*重写PC端样式Confirm样式*/
+
+        body .ui-confirm__container {
+            width: auto;
+            min-width: 420px;
+            max-width: 600px;
+            padding: 10px 20px;
+        }
+
+        body .ui-confirm__title {
+            height: 30px;
+            line-height: 30px;
+            font-size: 16px;
+            font-weight: 700;
+            padding: 0;
+            color: #333;
+            text-align: left;
+        }
+
+        body .ui-confirm__info {
+            min-height: 90px;
+            font-size: 14px;
+            line-height: 24px;
+            text-align: left;
+            color: #48576a;
+            font-weight: 200;
+            padding: 10px 0 0;
+        }
+
+        body .ui-confirm__button {
+            border: 0;
+            margin: 0;
+            display: block;
+        }
+
+        body .ui-confirm__button--ok,
+        body .ui-confirm__button--cancel {
+            width: 60px;
+            height: 35px;
+            display: inline-block;
+            font-size: 14px;
+            line-height: 35px;
+            cursor: pointer;
+            float: right;
+            border: 1px solid #d5d5d6;
+            border-radius: 5px;
+            background: #FFF;
+            color: #000;
+            margin: 0 5px;
+        }
+
+        body .ui-confirm__button--ok {
+            background: #20a0ff;
+            color: #FFF;
+            border: 0;
+        }
+
+        body .ui-confirm__button--cancel:hover {
+            border-color: #20a0ff;
+            color: #20a0ff;
+        }
+
+        body .ui-confirm__button--ok:hover {
+            opacity: 0.8;
+        }
+
+        /*左侧导航栏*/
+        body .ui-menu {
+            user-select: none;
+        }
+
+        body .ui-menu > div {
+            border-bottom: 1px solid #3d4957;
+        }
+
+        body .ui-menu > div:last-child {
+            border-bottom: 0;
+        }
+
+        body .ui-menu__item {
+            padding: 0;
+        }
+
+        body .ui-menu__item.ui-menu--open > .ui-menu__title {
+            background: #2C3542;
+        }
+
+        body .ui-menu__item > .ui-menu__title:hover {
+            background: #2C3542;
+        }
+
+        body .ui-menu__children > .ui-menu__item {
+            line-height: 30px;
+            padding-left: 50px;
+            cursor: pointer;
+        }
+
+        body .ui-menu__children {
+            padding: 5px 0;
+        }
+
+        body .ui-menu__children > .ui-menu__item:hover,
+        body .ui-menu__children > .ui-menu__item > a:hover {
+            background: #364252;
+        }
+
+        body .ui-menu__title {
+            line-height: 39px;
+            padding-left: 25px;
+        }
+
+        body .ui-menu__arrow {
+            position: relative;
+            float: right;
+            display: block;
+            width: 10px;
+        }
+
+        body .ui-menu__arrow:after {
+            content: "";
+            display: block;
+            width: 6px;
+            height: 6px;
+            border-left: 2px solid #eee;
+            border-bottom: 2px solid #eee;
+            transform: rotate(45deg);
+            position: absolute;
+            top: 15px;
+            left: 0;
+            transition: all 0.1s ease-in;
+        }
+        body .ui-menu__arrow.ui-menu__arrow--open {
+            transform: rotate(0deg);
+        }
+        body .ui-menu__arrow.ui-menu__arrow--open:after {
+            transform: rotate(-45deg);
+        }
+        body .ui-menu__item:last-child{
+            padding-bottom:0;
+        }
+        
+        body .ui-menu__item .menu__oneLevel{
+            line-height: 39px;
+            padding-left: 25px;
+            cursor: pointer;
+        }
+        body .ui-menu__item .menu__oneLevel:hover{
+            background: #2C3542;
+        }
+        body .ui-tabs-item--closable{
+            float: right;
+            top: 12px;
+        }
+    </style>
+</head>
+
+<body>
+<div id="app"></div>
+</body>
+</html>

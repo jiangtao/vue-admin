@@ -1,0 +1,100 @@
+<Layout>
+    <Tables :data="tableData" index selection @selection-change="a">
+        <Column title="姓名" field="name"></Column>
+        <Column title="日期" field="date" sortable @sort-change="b"></Column>
+        <Column title="余额" field="balance" sortable @sort-change="c"></Column>
+        <Column title="操作" inline-template>
+            <div>
+                <p @click="edit($index, data)">编辑</p>
+            </div>
+        </Column>
+    </Tables>
+
+    <Field label="活动名称" width="100" required>
+        <Inputs placeholder="请输入内容" v-model="abc"></Inputs>
+    </Field>
+    <Dropdown class="dropdown" @click="dropdownCallback">
+        <div>
+            asdhjasd
+        </div>
+
+        <DropdownMenu>
+            <DropdownItem>黄金糕</DropdownItem>
+            <DropdownItem>狮子头</DropdownItem>
+            <DropdownItem>螺蛳粉</DropdownItem>
+            <DropdownItem disabled>双皮奶</DropdownItem>
+            <DropdownItem>蚵仔煎</DropdownItem>
+        </DropdownMenu>
+    </Dropdown>
+
+    <Dropdown class="dropdown" trigger="click">
+        <div>asdhjasd2</div>
+
+        <DropdownMenu>
+            <DropdownItem>黄金糕</DropdownItem>
+            <DropdownItem>狮子头</DropdownItem>
+            <DropdownItem>螺蛳粉</DropdownItem>
+            <DropdownItem disabled>双皮奶</DropdownItem>
+            <DropdownItem>蚵仔煎</DropdownItem>
+        </DropdownMenu>
+    </Dropdown>
+
+    <form v-submit="submitform">
+        <Validator name="abc" required min="6" max="16" maxlength="12" @validate="validate1" @validated="validated1">
+            <Inputs name="test" placeholder="请输入内容" v-model="abc"></Inputs>
+            <p class="tips"></p>
+        </Validator>
+
+        <input type="submit" value="submit">
+    </form>
+
+    
+
+    <Field label="推广地" width="100" required>
+        <Selects placeholder="请选择推广地" v-model="abc2">
+            <Options value="黄金糕">
+                <div>黄金糕</div>
+            </Options>
+            <Options value="狮子头">狮子头</Options>
+            <Options value="螺蛳粉">螺蛳粉</Options>
+            <Options value="螺蛳粉2">螺蛳粉2</Options>
+            <Options value="螺蛳粉33">螺蛳粉33</Options>
+            <Options value="双皮奶" disabled>双皮奶</Options>
+            <Options value="蚵仔煎">蚵仔煎</Options>
+        </Selects>
+    </Field>
+    <Field label="推广地" width="100" required>
+        <Selects placeholder="请选择推广地" v-model="abc2" size="mini">
+            <Options value="黄金糕">
+                <div>黄金糕</div>
+            </Options>
+            <Options value="狮子头">狮子头</Options>
+            <Options value="螺蛳粉">螺蛳粉</Options>
+            <Options value="螺蛳粉2">螺蛳粉2</Options>
+            <Options value="螺蛳粉33">螺蛳粉33</Options>
+            <Options value="双皮奶" disabled>双皮奶</Options>
+            <Options value="蚵仔煎" selected>蚵仔煎</Options>
+        </Selects>
+    </Field>
+    <Field label="活动形式" width="100">
+        <Inputs placeholder="请输入内容" v-model="abc"></Inputs>
+    </Field>
+    <Field label="即时配送" width="100">
+        <Inputs placeholder="请输入内容" v-model="abc" disabled></Inputs>
+    </Field>
+    <Field label="即时配送" width="100" required align="top">
+        <div class="textarea">
+            <Inputs type="textarea" placeholder="请输入内容" v-model="abc"></Inputs>
+        </div>
+    </Field>
+
+    <div>
+
+        <Field label="即时配送" width="70">
+            <Inputs placeholder="请输入内容" v-model="abc"></Inputs>
+        </Field>
+        <Field label="a" width="70">
+            <Inputs placeholder="请输入内容" v-model="abc"></Inputs>
+        </Field>
+    </div>
+</Layout>

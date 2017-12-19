@@ -1,0 +1,10 @@
+.input{
+    width: 240px;
+}
+.textarea {
+    width: 440px;
+    height: 200px;
+}
+.dropdown {
+    display: inline-block;
+}
